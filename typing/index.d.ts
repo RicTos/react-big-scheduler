@@ -155,6 +155,8 @@ export class DnDSource {
         dragAnDropEnabled: boolean,
         dndType: string
     );
+
+    getDragSource: () => React.ElementType
 }
 
 export enum CellUnit {

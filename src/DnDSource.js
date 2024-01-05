@@ -30,7 +30,7 @@ export default class DnDSource {
                 let initialStart = dropResult.initialStart, initialEnd = dropResult.initialEnd;
                 let action = 'New';
 
-                let isEvent = type === DnDTypes.EVENT;
+                const isEvent = type === DnDTypes.EVENT;
                 if (isEvent) {
                     const event = item;
                     if (config.relativeMove) {
@@ -86,8 +86,9 @@ export default class DnDSource {
                         }
                     }
                     else {
-                        if (newEvent !== undefined)
+                        if (newEvent !== undefined) {
                             newEvent(schedulerData, slotId, slotName, newStart, newEnd, type, item);
+                        }
                     }
                 }
             },
