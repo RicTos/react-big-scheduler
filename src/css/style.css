@@ -79,6 +79,11 @@
     z-index: 1;
 }
 
+.scheduler-view-header,
+.resource-view-header {
+  border-bottom: 1px solid #e9e9e9;
+}
+
 table.resource-table,
 table.scheduler-bg-table,
 table.scheduler-table {
