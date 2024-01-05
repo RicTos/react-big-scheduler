@@ -1,7 +1,7 @@
 import dayjs from 'dayjs'
 import quarterOfYear from "dayjs/plugin/quarterOfYear";
 import utc from "dayjs/plugin/utc";
-import isoWeekday from "dayjs/plugin/isoWeekday";
+import isoWeek from "dayjs/plugin/isoWeek";
 import { RRuleSet, rrulestr } from 'rrule'
 import config from './config'
 import behaviors from './behaviors'
@@ -26,7 +26,7 @@ export default class SchedulerData {
 
         this.calendarPopoverLocale = undefined;
         dayjs.extend(quarterOfYear)
-        dayjs.extend(isoWeekday)
+        dayjs.extend(isoWeek)
         dayjs.extend(utc)
         this.localeDayjs = dayjs;
         this.config = newConfig == undefined ? config : { ...config, ...newConfig };
@@ -759,6 +759,7 @@ export default class SchedulerData {
                 slotName: slot.name,
                 parentId: slot.parentId,
                 groupOnly: slot.groupOnly,
+                leftComponent: slot.leftComponent,
                 hasSummary: false,
                 rowMaxCount: 0,
                 rowHeight: this.config.nonAgendaSlotMinHeight !== 0 ? this.config.nonAgendaSlotMinHeight : this.config.eventItemLineHeight + 2,

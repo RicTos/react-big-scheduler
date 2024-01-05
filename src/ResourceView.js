@@ -48,14 +48,18 @@ class ResourceView extends Component {
             indents.push(indent);
 
             let a = slotClickedFunc != undefined
-                ? <span className="slot-cell">{indents}
+                ? <span className="slot-cell">
+                    {indents}
+                    {item.leftComponent}
                     <a style={{ cursor: slotClickedFunc === undefined ? undefined : 'pointer' }} className="slot-text" onClick={() => {
                         slotClickedFunc(schedulerData, item);
                     }}>
                         {item.slotName}
                     </a>
                 </span>
-                : <span className="slot-cell">{indents}
+                : <span className="slot-cell">
+                    {indents}
+                    {item.leftComponent}
                     <span style={{ cursor: slotClickedFunc === undefined ? undefined : 'pointer' }} className="slot-text">
                         {item.slotName}
                     </span>

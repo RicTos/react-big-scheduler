@@ -1,5 +1,5 @@
 import { ConfigType, Dayjs, OptionType } from "dayjs";
-import React, { CSSProperties } from "react";
+import React, { CSSProperties, ReactNode } from "react";
 
 export default class Scheduler<EventType extends EventItem = EventItem> extends React.Component<SchedulerProps<EventType>, any> { }
 
@@ -227,6 +227,7 @@ export interface Resource {
     name: string;
     parentId?: string;
     groupOnly?: boolean;
+    leftComponent?: ReactNode
 }
 
 export interface HeaderItem<EventType extends EventItem = EventItem> {
