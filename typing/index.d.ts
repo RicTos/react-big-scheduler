@@ -138,7 +138,7 @@ export class SchedulerData<EventType extends EventItem = EventItem> {
     getViewStartDate(): Dayjs;
     getViewEndDate(): Dayjs;
     getViewDates(): { startDate: Dayjs, endDate: Dayjs };
-
+    getDateLabel(): string
 }
 
 export class DnDContext {

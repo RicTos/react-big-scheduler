@@ -193,8 +193,8 @@ class EventItem extends Component {
                 while (true) {
                     i++;
                     let tempStart = localeDayjs(new Date(eventItem.start)).add(i, 'days');
-                    let dayOfWeek = tempStart.weekday();
-                    if (dayOfWeek !== 0 && dayOfWeek !== 6) {
+                    let dayOfWeek = tempStart.isoWeekday();
+                    if (dayOfWeek !== 6 && dayOfWeek !== 7) {
                         tempCount++;
                         if (tempCount === count) {
                             newStart = tempStart.format(DATETIME_FORMAT);
@@ -208,8 +208,8 @@ class EventItem extends Component {
                 while (true) {
                     i--;
                     let tempStart = localeDayjs(new Date(eventItem.start)).add(i, 'days');
-                    let dayOfWeek = tempStart.weekday();
-                    if (dayOfWeek !== 0 && dayOfWeek !== 6) {
+                    let dayOfWeek = tempStart.isoWeekday();
+                    if (dayOfWeek !== 6 && dayOfWeek !== 7) {
                         tempCount--;
                         if (tempCount === count) {
                             newStart = tempStart.format(DATETIME_FORMAT);
@@ -397,8 +397,8 @@ class EventItem extends Component {
                 while (true) {
                     i++;
                     let tempEnd = localeDayjs(new Date(eventItem.end)).add(i, 'days');
-                    let dayOfWeek = tempEnd.weekday();
-                    if (dayOfWeek !== 0 && dayOfWeek !== 6) {
+                    let dayOfWeek = tempEnd.isoWeekday();
+                    if (dayOfWeek !== 6 && dayOfWeek !== 7) {
                         tempCount++;
                         if (tempCount === count) {
                             newEnd = tempEnd.format(DATETIME_FORMAT);
@@ -412,8 +412,8 @@ class EventItem extends Component {
                 while (true) {
                     i--;
                     let tempEnd = localeDayjs(new Date(eventItem.end)).add(i, 'days');
-                    let dayOfWeek = tempEnd.weekday();
-                    if (dayOfWeek !== 0 && dayOfWeek !== 6) {
+                    let dayOfWeek = tempEnd.isoWeekday();
+                    if (dayOfWeek !== 6 && dayOfWeek !== 7) {
                         tempCount--;
                         if (tempCount === count) {
                             newEnd = tempEnd.format(DATETIME_FORMAT);

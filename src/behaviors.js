@@ -99,8 +99,8 @@ export const isNonWorkingTime = (schedulerData, time) => {
             return true;
     }
     else {
-        let dayOfWeek = localeDayjs(new Date(time)).weekday();
-        if (dayOfWeek === 0 || dayOfWeek === 6)
+        let dayOfWeek = localeDayjs(new Date(time)).isoWeekday();
+        if (dayOfWeek === 6 || dayOfWeek === 7)
             return true;
     }
 

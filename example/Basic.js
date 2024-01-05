@@ -1,13 +1,9 @@
-import React, { Component } from 'react'
-import { PropTypes } from 'prop-types'
-//import moment from 'moment'
-//import 'moment/locale/zh-cn';
-// import 'antd/lib/style/index.less';     //Add this code for locally example
+import React, { Component, createRef } from 'react'
 import Scheduler, { SchedulerData, ViewType, DATE_FORMAT, DemoData } from '../src/index'
-import Nav from './Nav'
-import Tips from './Tips'
 import ViewSrcCode from './ViewSrcCode'
 import withDragDropContext from './withDnDContext'
+import * as dayjsLocale from "dayjs/locale/it";
+import * as antdLocale from "antd/locale/pt_BR";
 
 class Basic extends Component {
     constructor(props) {
@@ -23,43 +19,64 @@ class Basic extends Component {
                 yearMaxEvents: 9956,
                 customMaxEvents: 9965,
                 eventItemPopoverTrigger: 'click',
-                schedulerContentHeight: '350px'
+                schedulerContentHeight: '350px',
+                responsiveByParent: true,
+                // dayStartFrom: 2,
+                // dayStopTo: 10,
+                minuteStep: 60,
+                //  dayResourceTableWidth:10,
+                dayCellWidth: 60,
+                nonAgendaDayCellHeaderFormat: "HH:mm",
             });
-        schedulerData.setSchedulerLocale('pt-br');
-        schedulerData.setCalendarPopoverLocale('pt_BR');
+        schedulerData.setSchedulerLocale(dayjsLocale);
+        schedulerData.setCalendarPopoverLocale(antdLocale);
         schedulerData.setResources(DemoData.resources);
         schedulerData.setEvents(DemoData.events);
         this.state = {
-            viewModel: schedulerData
+            viewModel: schedulerData,
+            mounted: false,
         }
+
+        this.divRef = createRef();
+    }
+
+    componentDidMount() {
+        this.setState((prevState) => ({ ...prevState, mounted: true }));
     }
 
     render() {
         const { viewModel } = this.state;
+
         return (
             <div>
                 <div>
                     <h3 style={{ textAlign: 'center' }}>Basic example<ViewSrcCode srcCodeUrl="https://github.com/StephenChou1017/react-big-scheduler/blob/master/example/Basic.js" /></h3>
-                    <Scheduler schedulerData={viewModel}
-                        prevClick={this.prevClick}
-                        nextClick={this.nextClick}
-                        onSelectDate={this.onSelectDate}
-                        onViewChange={this.onViewChange}
-                        // eventItemClick={this.eventClicked}
-                        viewEventClick={this.ops1}
-                        viewEventText="Ops 1"
-                        viewEvent2Text="Ops 2"
-                        viewEvent2Click={this.ops2}
-                        updateEventStart={this.updateEventStart}
-                        updateEventEnd={this.updateEventEnd}
-                        moveEvent={this.moveEvent}
-                        newEvent={this.newEvent}
-                        onScrollLeft={this.onScrollLeft}
-                        onScrollRight={this.onScrollRight}
-                        onScrollTop={this.onScrollTop}
-                        onScrollBottom={this.onScrollBottom}
-                        toggleExpandFunc={this.toggleExpandFunc}
-                    />
+                          <div ref={this.divRef} style={{width:"50%", height: 1000 }}>
+                                {this.state.mounted && (
+                                    <Scheduler 
+                                        schedulerData={viewModel}
+                                        parentRef={this.divRef}
+                                        prevClick={this.prevClick}
+                                        nextClick={this.nextClick}
+                                        onSelectDate={this.onSelectDate}
+                                        onViewChange={this.onViewChange}
+                                        // eventItemClick={this.eventClicked}
+                                        viewEventClick={this.ops1}
+                                        viewEventText="Ops 1"
+                                        viewEvent2Text="Ops 2"
+                                        viewEvent2Click={this.ops2}
+                                        updateEventStart={this.updateEventStart}
+                                        updateEventEnd={this.updateEventEnd}
+                                        moveEvent={this.moveEvent}
+                                        newEvent={this.newEvent}
+                                        onScrollLeft={this.onScrollLeft}
+                                        onScrollRight={this.onScrollRight}
+                                        onScrollTop={this.onScrollTop}
+                                        onScrollBottom={this.onScrollBottom}
+                                        toggleExpandFunc={this.toggleExpandFunc}
+                                    />
+                            )}
+                    </div>    
                 </div>
             </div>
         )

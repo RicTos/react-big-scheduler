@@ -1,7 +1,7 @@
 import dayjs from 'dayjs'
 import quarterOfYear from "dayjs/plugin/quarterOfYear";
 import utc from "dayjs/plugin/utc";
-import weekday from "dayjs/plugin/weekday";
+import isoWeekday from "dayjs/plugin/isoWeekday";
 import { RRuleSet, rrulestr } from 'rrule'
 import config from './config'
 import behaviors from './behaviors'
@@ -26,7 +26,7 @@ export default class SchedulerData {
 
         this.calendarPopoverLocale = undefined;
         dayjs.extend(quarterOfYear)
-        dayjs.extend(weekday)
+        dayjs.extend(isoWeekday)
         dayjs.extend(utc)
         this.localeDayjs = dayjs;
         this.config = newConfig == undefined ? config : { ...config, ...newConfig };
@@ -666,8 +666,8 @@ export default class SchedulerData {
             else {
                 while (header >= start && header <= end) {
                     let time = header.format(DATETIME_FORMAT);
-                    let dayOfWeek = header.weekday();
-                    if (this.config.displayWeekend || (dayOfWeek !== 0 && dayOfWeek !== 6)) {
+                    let dayOfWeek = header.isoWeekday();
+                    if (this.config.displayWeekend || (dayOfWeek !== 6 && dayOfWeek !== 7)) {
                         let nonWorkingTime = this.behaviors.isNonWorkingTimeFunc(this, time);
                         headers.push({ time: time, nonWorkingTime: nonWorkingTime });
                     }

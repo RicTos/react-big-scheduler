@@ -191,7 +191,7 @@ class CustomTimeWindow extends Component {
                 return true;
         }
         else {
-            let dayOfWeek = localeDayjs(time).weekday();
+            let dayOfWeek = localeDayjs(time).isoWeekday();
             if (dayOfWeek === 0 || dayOfWeek === 6)
                 return true;
         }
