@@ -233,7 +233,7 @@ class Scheduler extends Component {
                     <td style={{ display: config.resourceViewEnabled ? undefined : 'none', width: resourceTableWidth, verticalAlign: 'top' }}>
                         <div className="resource-view">
                             <div className="resource-view-header" style={{ overflow: "hidden", height: config.tableHeaderHeight }}>
-                                <div style={{ overflowX: "scroll", overflowY: "hidden", margin: `0px 0px -${contentScrollbarHeight}px` }}>
+                                <div style={{ overflow: "hidden", margin: `0px 0px -${contentScrollbarHeight}px` }}>
                                     <table className="resource-table">
                                         <thead>
                                             <tr style={{ height: config.tableHeaderHeight }}>
@@ -260,7 +260,7 @@ class Scheduler extends Component {
                     <td>
                         <div className="scheduler-view" style={{ width: schedulerContainerWidth, verticalAlign: 'top' }}>
                             <div className="scheduler-view-header" style={{ overflow: "hidden", height: config.tableHeaderHeight }}>
-                                <div style={{ overflowX: "scroll", overflowY: "hidden", margin: `0px 0px -${contentScrollbarHeight}px` }}
+                                <div style={{ overflow: "hidden", margin: `0px 0px -${contentScrollbarHeight}px` }}
                                     ref={this.schedulerHeadRef}
                                     onMouseOver={this.onSchedulerHeadMouseOver}
                                     onMouseOut={this.onSchedulerHeadMouseOut}
