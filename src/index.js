@@ -181,7 +181,7 @@ class Scheduler extends Component {
         }
         else {
             let resourceTableWidth = schedulerData.getResourceTableWidth();
-            let schedulerContainerWidth = width - (config.resourceViewEnabled ? resourceTableWidth : 0);
+            let schedulerContainerWidth = width - (config.resourceViewEnabled ? resourceTableWidth : 0) - (viewType === ViewType.Week && contentScrollbarWidth !== 0 ? contentScrollbarWidth :0);
             let schedulerWidth = schedulerData.getContentTableWidth() - 1;
             let DndResourceEvents = this.state.dndContext.getDropTarget(config.dragAndDropEnabled);
             let eventDndSource = this.state.dndContext.getDndSource();
@@ -200,18 +200,20 @@ class Scheduler extends Component {
                 contentScrollbarWidth = this.state.contentScrollbarWidth,
                 resourceScrollbarHeight = this.state.resourceScrollbarHeight,
                 resourceScrollbarWidth = this.state.resourceScrollbarWidth,
-                contentHeight = config.schedulerContentHeight;
+                contentHeight = typeof config.schedulerContentHeight === "number" ? config.schedulerContentHeight : this.state.documentHeight - config.tableHeaderHeight;
             let resourcePaddingBottom = resourceScrollbarHeight === 0 ? contentScrollbarHeight : 0;
             let contentPaddingBottom = contentScrollbarHeight === 0 ? resourceScrollbarHeight : 0;
             let schedulerContentStyle = {
-                overflowX: viewType === ViewType.Week ? 'hidden' : 'auto',
-                overflowY: 'auto', margin: "0px",
+                overflowX: viewType === ViewType.Week  ? 'hidden' : 'auto',
+                overflowY: 'auto',
+                margin: "0px",
                 position: "relative",
                 height: contentHeight,
                 paddingBottom: contentPaddingBottom
             };
             let resourceContentStyle = {
-                height: contentHeight, overflowX: "auto",
+                height: contentHeight,
+                overflowX: "auto",
                 overflowY: "auto",
                 width: resourceTableWidth + resourceScrollbarWidth - 2,
                 margin: `0px -${contentScrollbarWidth}px 0px 0px`
