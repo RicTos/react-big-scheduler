@@ -181,7 +181,7 @@ class Scheduler extends Component {
         }
         else {
             let resourceTableWidth = schedulerData.getResourceTableWidth();
-            let schedulerContainerWidth = width - (config.resourceViewEnabled ? resourceTableWidth : 0) - (viewType === ViewType.Week && contentScrollbarWidth !== 0 ? contentScrollbarWidth :0);
+            let schedulerContainerWidth = width - (config.resourceViewEnabled ? resourceTableWidth : 0) - (viewType === ViewType.Week && contentScrollbarWidth !== undefined && contentScrollbarWidth !== 0 ? contentScrollbarWidth :0);
             let schedulerWidth = schedulerData.getContentTableWidth() - 1;
             let DndResourceEvents = this.state.dndContext.getDropTarget(config.dragAndDropEnabled);
             let eventDndSource = this.state.dndContext.getDndSource();
@@ -228,7 +228,7 @@ class Scheduler extends Component {
                     maxHeight: config.schedulerMaxHeight - config.tableHeaderHeight
                 };
             }
-
+            
             let resourceName = schedulerData.isEventPerspective ? config.taskName : config.resourceName;
             tbodyContent = (
                 <tr>
@@ -267,7 +267,7 @@ class Scheduler extends Component {
                                     onMouseOver={this.onSchedulerHeadMouseOver}
                                     onMouseOut={this.onSchedulerHeadMouseOut}
                                     onScroll={this.onSchedulerHeadScroll}>
-                                    <div style={{ paddingRight: `${contentScrollbarWidth}px`, width: schedulerWidth + contentScrollbarWidth }}>
+                                    <div style={{ paddingRight: `${contentScrollbarWidth}px`, width: schedulerWidth + (contentScrollbarWidth !== undefined ? contentScrollbarWidth : 0) }}>
                                         <table className="scheduler-bg-table">
                                             <HeaderView {...this.props} />
                                         </table>
