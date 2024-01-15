@@ -13,7 +13,8 @@ class CustomPopoverStyle extends Component {
         super(props);
 
         //let schedulerData = new SchedulerData(new dayjs("2017-12-18").format(DATE_FORMAT), ViewType.Week);
-        let schedulerData = new SchedulerData('2017-12-18', ViewType.Week);
+        let schedulerData = new SchedulerData('2017-12-18', ViewType.Week, false, false, {                eventItemPopoverColor: "red"
+    });
         schedulerData.localeDayjs.locale('en');
         schedulerData.setResources(DemoData.resources);
         schedulerData.setEvents(DemoData.events);

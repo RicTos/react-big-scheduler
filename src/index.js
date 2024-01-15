@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { PropTypes } from 'prop-types'
+import { Dropdown } from 'antd';
+
 // Col, Row and Icon do not have their own less files for styling. They use 
 // rules declared in antd's global css. If these styles are imported directly
 // from within antd, they'll include, for instance, reset rules. These will
@@ -169,7 +171,7 @@ class Scheduler extends Component {
     }
 
     render() {
-        const { schedulerData, leftCustomHeader, rightCustomHeader } = this.props;
+        const { schedulerData, leftCustomHeader, rightCustomHeader, customerResourceHeader } = this.props;
         const { viewType, renderData, showAgenda, config } = schedulerData;
         const width = schedulerData.getSchedulerWidth();
 
@@ -240,7 +242,7 @@ class Scheduler extends Component {
                                         <thead>
                                             <tr style={{ height: config.tableHeaderHeight }}>
                                                 <th className="header3-text">
-                                                    {resourceName}
+                                                    {customerResourceHeader ? customerResourceHeader(resourceName) : resourceName}
                                                 </th>
                                             </tr>
                                         </thead>

@@ -51,7 +51,7 @@ class Basic extends Component {
             <div>
                 <div>
                     <h3 style={{ textAlign: 'center' }}>Basic example<ViewSrcCode srcCodeUrl="https://github.com/StephenChou1017/react-big-scheduler/blob/master/example/Basic.js" /></h3>
-                          <div ref={this.divRef} style={{width:"50%", height: 1000 }}>
+                          <div ref={this.divRef} style={{width:"100%", height: 1000 }}>
                                 {this.state.mounted && (
                                     <Scheduler 
                                         schedulerData={viewModel}

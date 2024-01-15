@@ -1,5 +1,6 @@
 import dayjs from 'dayjs'
 import quarterOfYear from "dayjs/plugin/quarterOfYear";
+import localizedFormat from "dayjs/plugin/localizedFormat";
 import utc from "dayjs/plugin/utc";
 import isoWeek from "dayjs/plugin/isoWeek";
 import { RRuleSet, rrulestr } from 'rrule'
@@ -28,6 +29,7 @@ export default class SchedulerData {
         dayjs.extend(quarterOfYear)
         dayjs.extend(isoWeek)
         dayjs.extend(utc)
+        dayjs.extend(localizedFormat)
         this.localeDayjs = dayjs;
         this.config = newConfig == undefined ? config : { ...config, ...newConfig };
         this._validateMinuteStep(this.config.minuteStep);
@@ -99,10 +101,20 @@ export default class SchedulerData {
         return 60 / this.config.minuteStep;
     }
 
-    addResource(resource) {
+    addResource(resource, sort = false) {
         let existedResources = this.resources.filter(x => x.id === resource.id);
         if (existedResources.length === 0) {
             this.resources.push(resource);
+            sort && this.resources.sort((a, b) => a.id - b.id)
+            this._createRenderData();
+        }
+    }
+
+    removeResource(resource, sort = false) {
+        let index = this.resources.indexOf(resource);
+        if (index !== -1) {
+            this.resources.splice(index, 1);
+            sort && this.resources.sort((a, b) => a.id - b.id)
             this._createRenderData();
         }
     }

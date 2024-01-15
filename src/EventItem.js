@@ -598,6 +598,7 @@ class EventItem extends Component {
                     placement={isPopoverPlacementMousePosition ? mousePositionPlacement : popoverPlacement}
                     content={content}
                     trigger={config.eventItemPopoverTrigger}
+                    color={config.eventItemPopoverColor}
                 >
                     {aItem}
                 </Popover>

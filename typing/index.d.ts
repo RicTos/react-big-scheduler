@@ -60,6 +60,7 @@ export interface SchedulerProps<EventType extends EventItem = EventItem> {
     ) => void;
     leftCustomHeader?: React.ReactNode;
     rightCustomHeader?: React.ReactNode;
+    customerResourceHeader?: (resourceName:string) => React.ReactNode;
     dndSources?: DnDSource[];
     parentRef?: React.RefObject<any>;
 }
@@ -127,7 +128,8 @@ export class SchedulerData<EventType extends EventItem = EventItem> {
     updateEventEnd(event: EventType, newEnd: string): void;
     moveEvent(event: EventType, newSlotId: string, newSlotName: string, newStart: string, newEnd: string): void;
     getSlots(): EventGroup<EventType>[] | Resource[];
-    addResource(resource: Resource): void;
+    addResource(resource: Resource, sort?: boolean): void;
+    removeResource(resource: Resource, sort?: boolean): void;
     getSlotById(slotId: string): EventType;
     toggleExpandStatus(slotId: string): void;
     removeEventById(eventId: string): void;
@@ -284,6 +286,7 @@ export interface SchedulerDataConfig {
     yearMaxEvents?: number;
     customMaxEvents?: number;
     eventItemPopoverTrigger?: 'hover' | 'click';
+    eventItemPopoverColor?: string
     eventItemPopoverPlacement?: 'topLeftMousePosition' | 'bottomLeftMousePosition' | 'topRightMousePosition' | 'bottomRightMousePosition' | 'top' | 'left' | 'right' | 'bottom' | 'topLeft' | 'topRight' | 'bottomLeft' | 'bottomRight' | 'leftTop' | 'leftBottom' | 'rightTop' | 'rightBottom'
     eventItemPopoverWidth?: number;
     eventItemHeight?: number;

@@ -35,6 +35,7 @@ export default {
     customMaxEvents: 99,
 
     eventItemPopoverTrigger: 'hover',
+    eventItemPopoverColor: undefined,
     eventItemPopoverPlacement: 'bottomLeft',
     eventItemPopoverWidth: 300,
 
