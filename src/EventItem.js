@@ -187,7 +187,7 @@ class EventItem extends Component {
         else if (newWidth > maxWidth)
             count = -leftIndex;
         let newStart = localeDayjs(new Date(eventItem.start)).add(cellUnit === CellUnit.Hour ? count * config.minuteStep : count, cellUnit === CellUnit.Hour ? 'minutes' : 'days').format(DATETIME_FORMAT);
-        if (count !== 0 && cellUnit !== CellUnit.Hour && config.displayWeekend === false) {
+        if (count !== 0 && cellUnit !== CellUnit.Hour) {
             if (count > 0) {
                 let tempCount = 0, i = 0;
                 while (true) {
@@ -391,7 +391,7 @@ class EventItem extends Component {
         else if (newWidth > maxWidth)
             count = headers.length - rightIndex;
         let newEnd = localeDayjs(new Date(eventItem.end)).add(cellUnit === CellUnit.Hour ? count * config.minuteStep : count, cellUnit === CellUnit.Hour ? 'minutes' : 'days').format(DATETIME_FORMAT);
-        if (count !== 0 && cellUnit !== CellUnit.Hour && config.displayWeekend === false) {
+        if (count !== 0 && cellUnit !== CellUnit.Hour) {
             if (count > 0) {
                 let tempCount = 0, i = 0;
                 while (true) {

@@ -668,10 +668,6 @@ Controls Scheduler whether to display header, default `true`.
 
 Controls Scheduler whether to display resource view, default `true`.
 
-#### displayWeekend
-
-Controls Scheduler whether to display weekends in non-agenda view, default `true`.
-
 #### relativeMove
 
 Controls Scheduler whether to move events(only DnDTypes.EVENT type) relatively or absolutely, default `true`, means relatively.

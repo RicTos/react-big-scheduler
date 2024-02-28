@@ -11,10 +11,12 @@ class HideWeekends extends Component {
     constructor(props) {
         super(props);
 
+        const days = [1, 2, 3, 4, 5, 6, 7]
+        const width = 84.0/days.length
         //let schedulerData = new SchedulerData(new dayjs("2017-12-18").format(DATE_FORMAT), ViewType.Week);
         let schedulerData = new SchedulerData('2017-12-18', ViewType.Week, false, false, {
-            displayWeekend: false,
-            weekCellWidth: '16%'
+            displayDays: days,
+            weekCellWidth: `${width}%`
         });
         schedulerData.localeDayjs.locale('en');
         schedulerData.setResources(DemoData.resources);

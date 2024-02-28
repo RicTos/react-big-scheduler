@@ -655,7 +655,6 @@ export default class SchedulerData {
             headers.push({ time: header.format(DATETIME_FORMAT), nonWorkingTime: false });
         }
         else {
-
             if (this.cellUnit === CellUnit.Hour) {
                 start = start.add(this.config.dayStartFrom, 'hours');
                 end = end.add(this.config.dayStopTo, 'hours');
@@ -678,8 +677,9 @@ export default class SchedulerData {
             else {
                 while (header >= start && header <= end) {
                     let time = header.format(DATETIME_FORMAT);
-                    let dayOfWeek = header.isoWeekday();
-                    if (this.config.displayWeekend || (dayOfWeek !== 6 && dayOfWeek !== 7)) {
+                    let dayOfWeek = header.weekday();
+                    
+                    if (this.config.displayDays ? this.config.displayDays.find(el => el === dayOfWeek) !== -1 : true) {
                         let nonWorkingTime = this.behaviors.isNonWorkingTimeFunc(this, time);
                         headers.push({ time: time, nonWorkingTime: nonWorkingTime });
                     }

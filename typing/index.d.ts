@@ -316,7 +316,7 @@ export interface SchedulerDataConfig {
     dateChangeSpinEnabled?: boolean;
     headerEnabled?: boolean;
     resourceViewEnabled?: boolean;
-    displayWeekend?: boolean;
+    displayDays?: number[];
     relativeMove?: boolean;
     defaultExpanded?: boolean;
     dragAndDropEnabled?: boolean;

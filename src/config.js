@@ -67,10 +67,10 @@ export default {
     dateChangeSpinEnabled: true,
     headerEnabled: true,
     resourceViewEnabled: true,
-    displayWeekend: true,
     relativeMove: true,
     defaultExpanded: true,
     dragAndDropEnabled: true,
+    displayDays: undefined,
 
     schedulerHeaderEventsFuncsTimeoutMs: 100,
 
