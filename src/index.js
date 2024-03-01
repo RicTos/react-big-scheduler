@@ -183,26 +183,26 @@ class Scheduler extends Component {
         }
         else {
             let resourceTableWidth = schedulerData.getResourceTableWidth();
-            let schedulerContainerWidth = width - (config.resourceViewEnabled ? resourceTableWidth : 0) - (viewType === ViewType.Week && contentScrollbarWidth !== undefined && contentScrollbarWidth !== 0 ? contentScrollbarWidth :0);
+            let schedulerContainerWidth = width - (config.resourceViewEnabled ? resourceTableWidth : 0)
             let schedulerWidth = schedulerData.getContentTableWidth() - 1;
             let DndResourceEvents = this.state.dndContext.getDropTarget(config.dragAndDropEnabled);
             let eventDndSource = this.state.dndContext.getDndSource();
-
+            
             let displayRenderData = renderData.filter(o => o.render);
             let resourceEventsList = displayRenderData.map((item) => {
                 return <DndResourceEvents
-                    {...this.props}
-                    key={item.slotId}
-                    resourceEvents={item}
-                    dndSource={eventDndSource}
+                {...this.props}
+                key={item.slotId}
+                resourceEvents={item}
+                dndSource={eventDndSource}
                 />
             });
-
+            
             let contentScrollbarHeight = this.state.contentScrollbarHeight,
-                contentScrollbarWidth = this.state.contentScrollbarWidth,
-                resourceScrollbarHeight = this.state.resourceScrollbarHeight,
-                resourceScrollbarWidth = this.state.resourceScrollbarWidth,
-                contentHeight = typeof config.schedulerContentHeight === "number" ? config.schedulerContentHeight : this.state.documentHeight - config.tableHeaderHeight;
+            contentScrollbarWidth = this.state.contentScrollbarWidth,
+            resourceScrollbarHeight = this.state.resourceScrollbarHeight,
+            resourceScrollbarWidth = this.state.resourceScrollbarWidth,
+            contentHeight = typeof config.schedulerContentHeight === "number" ? config.schedulerContentHeight : this.state.documentHeight - config.tableHeaderHeight;
             let resourcePaddingBottom = resourceScrollbarHeight === 0 ? contentScrollbarHeight : 0;
             let contentPaddingBottom = contentScrollbarHeight === 0 ? resourceScrollbarHeight : 0;
             let schedulerContentStyle = {
@@ -211,8 +211,9 @@ class Scheduler extends Component {
                 margin: "0px",
                 position: "relative",
                 height: contentHeight,
-                paddingBottom: contentPaddingBottom
-            };
+                paddingBottom: contentPaddingBottom,
+                margin: `0px -${contentScrollbarWidth}px 0px 0px`
+             };
             let resourceContentStyle = {
                 height: contentHeight,
                 overflowX: "auto",
@@ -262,14 +263,14 @@ class Scheduler extends Component {
                         </div>
                     </td>
                     <td>
-                        <div className="scheduler-view" style={{ width: schedulerContainerWidth, verticalAlign: 'top' }}>
+                        <div className="scheduler-view" style={{ width: schedulerContainerWidth - contentScrollbarWidth, verticalAlign: 'top', marginRight: contentScrollbarWidth }}>
                             <div className="scheduler-view-header" style={{ overflow: "hidden", height: config.tableHeaderHeight }}>
                                 <div style={{ overflow: "hidden", margin: `0px 0px -${contentScrollbarHeight}px` }}
                                     ref={this.schedulerHeadRef}
                                     onMouseOver={this.onSchedulerHeadMouseOver}
                                     onMouseOut={this.onSchedulerHeadMouseOut}
                                     onScroll={this.onSchedulerHeadScroll}>
-                                    <div style={{ paddingRight: `${contentScrollbarWidth}px`, width: schedulerWidth + (contentScrollbarWidth !== undefined ? contentScrollbarWidth : 0) }}>
+                                    <div style={{ width: schedulerWidth }}>
                                         <table className="scheduler-bg-table">
                                             <HeaderView {...this.props} />
                                         </table>
@@ -336,7 +337,6 @@ class Scheduler extends Component {
     }
 
     resolveScrollbarSize = () => {
-        const { schedulerData } = this.props;
         let contentScrollbarHeight = 17,
             contentScrollbarWidth = 17,
             resourceScrollbarHeight = 17,
@@ -368,7 +368,7 @@ class Scheduler extends Component {
             tmpState = { ...tmpState, resourceScrollbarWidth: resourceScrollbarWidth };
             needSet = true;
         }
-        if (needSet)
+        if (needSet) 
             this.setState(tmpState);
     }
 
