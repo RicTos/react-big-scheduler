@@ -232,6 +232,7 @@ export interface Resource {
     parentId?: string;
     groupOnly?: boolean;
     leftComponent?: ReactNode
+    [x: string]: unknown;
 }
 
 export interface HeaderItem<EventType extends EventItem = EventItem> {
