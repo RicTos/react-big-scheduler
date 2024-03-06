@@ -577,7 +577,7 @@ class EventItem extends Component {
             }
         }
 
-        const { popoverOffsetX, mousePositionPlacement } = getMousePositionOptionsData()
+        const {  mousePositionPlacement } = getMousePositionOptionsData()
 
         const aItem = config.dragAndDropEnabled ? connectDragPreview(connectDragSource(a)) : a;
 
@@ -587,14 +587,6 @@ class EventItem extends Component {
                     {aItem}
                 </div> :
                 <Popover
-                    transitionName={isPopoverPlacementMousePosition ? '' : undefined}
-                    align={isPopoverPlacementMousePosition ? {
-                        offset: [popoverOffsetX, popoverPlacement.includes('top') ? -10 : 10],
-                        overflow: {
-                            // shiftX: true,
-                            // shiftY: true,
-                        }
-                    } : undefined}
                     placement={isPopoverPlacementMousePosition ? mousePositionPlacement : popoverPlacement}
                     content={content}
                     trigger={config.eventItemPopoverTrigger}
