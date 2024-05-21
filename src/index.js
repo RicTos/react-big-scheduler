@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { PropTypes } from 'prop-types'
-import { Dropdown } from 'antd';
 
 // Col, Row and Icon do not have their own less files for styling. They use 
 // rules declared in antd's global css. If these styles are imported directly
@@ -43,6 +42,21 @@ import SchedulerData from './SchedulerData'
 import DemoData from './DemoData'
 import SchedulerHeader from './SchedulerHeader'
 
+const debounce = (func, delay, { leading } = {}) => {
+    let timerId
+  
+    return (...args) => {
+      if (!timerId && leading) {
+        func(...args)
+      }
+      clearTimeout(timerId)
+  
+      timerId = setTimeout(() => func(...args), delay)
+    }
+  }
+  
+  (...args) => debounce(...args)
+
 class Scheduler extends Component {
 
     constructor(props) {
@@ -73,7 +87,7 @@ class Scheduler extends Component {
 
         if ((schedulerData.isSchedulerResponsive() && !schedulerData.config.responsiveByParent) || parentRef === undefined) {
             schedulerData._setDocumentWidth(document.documentElement.clientWidth);
-            window.onresize = this.onWindowResize;
+            window.onresize = debounce(this.onWindowResize, schedulerData.config.resizeDelay);
         }
     }
 
@@ -140,7 +154,7 @@ class Scheduler extends Component {
                     }
                 });
 
-                this.ulObserver.observe(parentRef.current);
+                debounce(this.ulObserver.observe(parentRef.current), schedulerData.config.resizeDelay);
             }
         }
     }

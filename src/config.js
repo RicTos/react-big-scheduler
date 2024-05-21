@@ -9,6 +9,7 @@ export default {
     schedulerContentHeight: '500px',
 
     responsiveByParent: false,
+    resizeDelay: 200,
 
     agendaResourceTableWidth: 160,
     agendaMaxEventWidth: 100,

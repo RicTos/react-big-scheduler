@@ -332,6 +332,7 @@ export interface SchedulerDataConfig {
     minuteStep?: number;
     views?: View[];
     responsiveByParent?: boolean
+    resizeDelay?: number
 }
 
 export enum SummaryPos {
