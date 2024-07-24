@@ -230,8 +230,8 @@ class Scheduler extends Component {
              };
             let resourceContentStyle = {
                 height: contentHeight,
-                overflowX: "auto",
-                overflowY: "auto",
+                overflowX: "hidden",
+                overflowY: "hidden",
                 width: resourceTableWidth + resourceScrollbarWidth - 2,
                 margin: `0px -${contentScrollbarWidth}px 0px 0px`
             };
@@ -242,7 +242,7 @@ class Scheduler extends Component {
                 };
                 resourceContentStyle = {
                     ...resourceContentStyle,
-                    maxHeight: config.schedulerMaxHeight - config.tableHeaderHeight
+                    maxHeight: config.schedulerMaxHeight - config.tableHeaderHeight,
                 };
             }
             
@@ -271,6 +271,7 @@ class Scheduler extends Component {
                                 onScroll={this.onSchedulerResourceScroll}>
                                 <ResourceView
                                     {...this.props}
+                                    width={resourceContentStyle.width}
                                     contentScrollbarHeight={resourcePaddingBottom}
                                 />
                             </div>

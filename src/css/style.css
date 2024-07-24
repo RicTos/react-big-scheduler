@@ -254,7 +254,6 @@ table.scheduler-table tr:last-child td {
 }
 
 .slot-text {
-    display: inline-block;
     padding-left: 4px;
     padding-right: 4px;
 }

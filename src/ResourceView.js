@@ -65,7 +65,7 @@ class ResourceView extends Component {
                     </span>
                 </span>;
             let slotItem = (
-                <div title={item.slotName} className="overflow-text header2-text" style={{ textAlign: "left" }}>
+                <div title={item.slotName} className="overflow-text header2-text" style={{ textAlign: "left", maxWidth: this.props.width }}>
                     {a}
                 </div>
             );
